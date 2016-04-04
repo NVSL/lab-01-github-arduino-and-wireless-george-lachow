@@ -17,11 +17,7 @@
 void setup()
 {
   Serial.begin(9600);  // Start up serial
-  Serial1.begin(115200);
-  rfBegin(11);  // Initialize ATmega128RFA1 radio on channel 11 (can be 11-26)
-  
-  // Send a message to other RF boards on this channel
-  rfPrint("ATmega128RFA1 Dev Board Online!\r\n");
+  rfBegin(16);  // Initialize ATmega128RFA1 radio on channel 11 (can be 11-26)
 }
 
 void loop()
