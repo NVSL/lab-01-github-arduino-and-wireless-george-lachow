@@ -105,7 +105,9 @@ void SendSignals(){
   Serial.print(String(timeUsed));
   Serial.print(" ms.\n");
   Serial.print("\nSent (bytes): ");
-  unsigned long totalBytes = numOfPackets* bufferSize;
+  // Uncomment this line to calculate the maximum bytes.
+  // unsigned long totalBytes = numOfPackets*bufferSize;
+  unsigned long totalBytes = numOfPackets;
   Serial.print(String(totalBytes));
   Serial.print("\n");
   float bps = float(totalBytes)* 8.0/(float(timeUsed)/1000000.0);
