@@ -20,7 +20,7 @@ char startSignal = '1'; // start signal in one byte.
 char messageSignal = '5'; // message signal in one byte.
 char terminalSignal = '7'; // termination signal in one byte that indicates the end of the test session.
 unsigned long counter = 0; // counts the number bytes rfRead recevied.
-unsigned long numOfPackets = 1000; // number of packets to send.
+unsigned long numOfPackets = 3000; // number of packets to send. We used 1000 for measuring the bandwidth, and 3000 for measuring the packet drops.
 unsigned long bufferSize = 125; // number of bytes in one packet.
 char charStr[125];
 unsigned long timeOutStartTime = 0; // keep track of start of a test session.
@@ -32,7 +32,7 @@ void setup()
   for (int i=0; i< bufferSize; i++) {
     charStr[i] = messageSignal;
   }
-  Serial.begin(9600);  // Start up serial
+  Serial.begin(250000);  // Start up serial
   rfBegin(16);  // Initialize ATmega128RFA1 radio on channel 11 (can be 11-26)
 }
 
@@ -90,7 +90,8 @@ void SendSignals(){
   // Loop to send a number of packets.
   for (int i=0; i<numOfPackets; ++i) {
     // to test maximum speed, uncomment this line, and sends packets with maximum buffersize.
-    rfPrint(str);
+    // rfPrint(str);
+    rfWrite(messageSignal);
   }
 
   // Mark the end of the sending process.
