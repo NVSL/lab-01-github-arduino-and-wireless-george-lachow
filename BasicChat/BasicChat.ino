@@ -20,7 +20,7 @@ char startSignal = '1'; // start signal in one byte.
 char messageSignal = '5'; // message signal in one byte.
 char terminalSignal = '7'; // termination signal in one byte that indicates the end of the test session.
 unsigned long counter = 0; // counts the number bytes rfRead recevied.
-unsigned long numOfPackets = 3000; // number of packets to send.
+unsigned long numOfPackets = 1200; // number of packets to send.
 unsigned long bufferSize = 125; // number of bytes in one packet.
 char charStr[125];
 unsigned long timeOutStartTime = 0; // keep track of start of a test session.
@@ -104,10 +104,10 @@ void SendSignals(){
   Serial.print(String(timeUsed));
   Serial.print(" ms.\n");
   Serial.print("\nSent (bytes): ");
-  unsigned long totalBytes = numOfPackets * bufferSize;
+  unsigned long totalBytes = numOfPackets * (bufferSize);
   Serial.print(String(totalBytes));
   Serial.print("\n");
-  float bps = float(totalBytes)* 8.0/((float)timeUsed/1000000.0);
+  float bps = float(totalBytes)* 8.0/(float(timeUsed)/1000000.0);
   Serial.print(String(bps));
   Serial.print("\n\n\n");
 
